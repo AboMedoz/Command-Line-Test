@@ -2,8 +2,9 @@
 echo "Command Line Test"
 
 signIn(){
-    echo "TODO"
-    #TODO
+    echo -n "Username: "
+    echo -s -n "Password: "
+    echo
 }
 
 signUp(){
