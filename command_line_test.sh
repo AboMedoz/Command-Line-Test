@@ -22,7 +22,10 @@ signUp(){
     enterPassword
     elif [[ $password != *[[:digit:]]* ]]; then
     echo "Password should contain at least one Digit"
-    enterPassword    
+    enterPassword  
+    elif [[ $password != *[#$\&~@^]* ]]; then
+    echo "Password should at least include one Symbol" 
+    enterPassword 
     fi
     }
     reEnterPassword(){
@@ -38,7 +41,7 @@ signUp(){
     fi
     echo -n "Registeration Successful. Please enter any Key to continue. "
     read $1
-    #save the data to a file maybe json? TODO 
+    #save the data 
 }
 
 main(){
