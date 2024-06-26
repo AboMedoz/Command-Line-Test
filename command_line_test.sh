@@ -1,12 +1,28 @@
 #!/bin/bash
+
 echo "Command Line Test"
 
 signIn(){
-    echo -n "Username: "
-    read enteredusername
-    echo -n "Password: "
-    read -s enterdpassword
-    echo
+    usernameValidation(){
+        echo -n "Username: "
+        read enteredusername
+        if ! grep -wq "$enteredusername" Database.txt; then 
+        echo "Username is incorrect!, Please Try Again"
+        usernameValidation
+        fi
+    }
+    passwordValidation(){
+        echo -n "Password: "
+        read -s enteredpassword
+        echo
+        if ! grep -xwq "$enteredusername || $enteredpassword" Database.txt; then
+        echo "Wrong Password! Please Try Again"
+        passwordValidation
+        fi
+    }
+    usernameValidation
+    passwordValidation
+    #Features Screen  TODO 
 }
 
 makeDatabase(){
@@ -21,37 +37,37 @@ signUp(){
     echo "Sign Up Screen"
     echo
     enterUsername(){
-    echo -n "Please choose a Username: "
-    read username 
-    if  grep -wq "$username" Database.txt; then
-    echo -e "\033[0;31mUsername $username already Exists!, Please choose another Username \033[0m"
-    enterUsername
-    fi
+        echo -n "Please choose a Username: "
+        read username 
+        if  grep -wq "$username" Database.txt; then
+        echo -e "\033[0;31mUsername $username already Exists!, Please choose another Username \033[0m"
+        enterUsername
+        fi
     }
     enterUsername
     #if the whole keyboard is alphanumeric then there isn't anything to check for
     enterPassword(){
-    echo -n "Enter a Password: "
-    read -s password
-    echo
-    if (( ${#password} < 8 )); then
-    echo "Too short"
-    enterPassword
-    elif [[ $password != *[[:digit:]]* ]]; then
-    echo "Password should contain at least one Digit"
-    enterPassword  
-    elif [[ $password != *[#$\&~@^]* ]]; then
-    echo "Password should at least include one Symbol" 
-    enterPassword 
-    fi
+        echo -n "Enter a Password: "
+        read -s password
+        echo
+        if (( ${#password} < 8 )); then
+        echo "Too short"
+        enterPassword
+        elif [[ $password != *[[:digit:]]* ]]; then
+        echo "Password should contain at least one Digit"
+        enterPassword  
+        elif [[ $password != *[#$\&~@^]* ]]; then
+        echo "Password should at least include one Symbol" 
+        enterPassword 
+        fi
     }
     reEnterPassword(){
-    echo -e -n "Please \033[37;47m re enter \033[0m Password: "
-    read -s rentered
-    echo
-    if [ $password != $rentered ]; then
-    echo "Passwords Don't Match please re-enter"
-    reEnterPassword
+        echo -e -n "Please \033[37;47m re enter \033[0m Password: "
+        read -s rentered
+        echo
+        if [ $password != $rentered ]; then
+        echo "Passwords Don't Match please re-enter"
+        reEnterPassword
     fi
     }
     enterPassword
