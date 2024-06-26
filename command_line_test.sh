@@ -3,7 +3,9 @@ echo "Command Line Test"
 
 signIn(){
     echo -n "Username: "
-    echo -s -n "Password: "
+    read enteredusername
+    echo -n "Password: "
+    read -s enterdpassword
     echo
 }
 
@@ -13,10 +15,20 @@ makeDatabase(){
 }
 
 signUp(){
+    if [ ! -f Database.txt ]; then
+    makeDatabase
+    fi
     echo "Sign Up Screen"
     echo
+    enterUsername(){
     echo -n "Please choose a Username: "
     read username 
+    if  grep -wq "$username" Database.txt; then
+    echo -e "\033[0;31mUsername $username already Exists!, Please choose another Username \033[0m"
+    enterUsername
+    fi
+    }
+    enterUsername
     #if the whole keyboard is alphanumeric then there isn't anything to check for
     enterPassword(){
     echo -n "Enter a Password: "
@@ -37,18 +49,16 @@ signUp(){
     echo -e -n "Please \033[37;47m re enter \033[0m Password: "
     read -s rentered
     echo
-    }
-    enterPassword
-    reEnterPassword
     if [ $password != $rentered ]; then
     echo "Passwords Don't Match please re-enter"
     reEnterPassword
     fi
-    echo -n "Registeration Successful. Please enter any Key to continue. "
-    if [ ! -f Database.txt ]; then
-    makeDatabase
-    fi
+    }
+    enterPassword
+    reEnterPassword
+    echo
     echo "$username || $password" >> Database.txt
+    echo -n "Registeration Successful. Please enter any Key to continue. "
     read $1
 }
 
@@ -68,7 +78,7 @@ main(){
     elif [ $option -eq 2 ]; then
     signUp
     else 
-    Exit
+    exit
     fi
 }
 main
