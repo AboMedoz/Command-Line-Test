@@ -7,6 +7,11 @@ signIn(){
     echo
 }
 
+makeDatabase(){
+    touch Database.txt
+    echo "Username || Password" >> Database.txt
+}
+
 signUp(){
     echo "Sign Up Screen"
     echo
@@ -40,8 +45,11 @@ signUp(){
     reEnterPassword
     fi
     echo -n "Registeration Successful. Please enter any Key to continue. "
+    if [ ! -f Database.txt ]; then
+    makeDatabase
+    fi
+    echo "$username || $password" >> Database.txt
     read $1
-    #save the data 
 }
 
 main(){
