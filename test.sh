@@ -6,4 +6,14 @@ makeDatabase(){
     echo "File Exists"
     fi
 }
-makeDatabase
+
+makeLogs(){
+    if [ ! -f logs.log ]; then
+    touch logs.log
+    else 
+    echo "File Exists"
+    fi
+}
+makeLogs
+currentdate=$(date +"%Y-%m-%d %H:%M:%S")
+echo $currentdate

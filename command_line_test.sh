@@ -1,5 +1,6 @@
 #!/bin/bash
 
+currentdate=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Command Line Test"
 
 signIn(){
@@ -25,15 +26,22 @@ signIn(){
     #Features Screen  TODO 
 }
 
+makeLogs(){
+    if [ ! -f logs.log ]; then
+    touch logs.log
+    fi
+}
+
 makeDatabase(){
+    if [ ! -f Database.txt ]; then
     touch Database.txt
     echo "Username || Password" >> Database.txt
+    echo "$currentdate | Database Created." >> logs.log
+    fi
 }
 
 signUp(){
-    if [ ! -f Database.txt ]; then
     makeDatabase
-    fi
     echo "Sign Up Screen"
     echo
     enterUsername(){
@@ -75,10 +83,13 @@ signUp(){
     echo
     echo "$username || $password" >> Database.txt
     echo -n "Registeration Successful. Please enter any Key to continue. "
+    echo "$currentdate | Script Exited " >> logs.log
     read $1
 }
 
 main(){
+    makeLogs
+    echo "$currentdate | Script Invoked" >> logs.log
     echo "Please chose one of the Below Options: "
     echo
     echo "1. Sign In"
@@ -94,6 +105,7 @@ main(){
     elif [ $option -eq 2 ]; then
     signUp
     else 
+    echo "$currentdate | Script Exited " >> logs.log
     exit
     fi
 }
