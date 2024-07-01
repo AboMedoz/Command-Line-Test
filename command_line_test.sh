@@ -3,6 +3,33 @@
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
 echo "Command Line Test"
 
+takeTest(){
+    echo "TODO"
+    #TODO
+}
+
+viewTest(){
+    echo "TODO"
+    #TODO
+}
+
+featureScreen(){
+    echo 
+    echo "1. Take a Test"
+    echo "2. View your Test"
+    echo "3. Exit"
+
+    echo -n "Please choose an Option: "
+    read featureoption 
+    if [ $featureoption -eq 1 ]; then
+    takeTest
+    elif [ $featureoption -eq 2 ]; then 
+    viewTest
+    else
+    exit
+    fi
+}
+
 signIn(){
     usernameValidation(){
         echo -n "Username: "
@@ -23,7 +50,7 @@ signIn(){
     }
     usernameValidation
     passwordValidation
-    #Features Screen  TODO 
+    featureScreen 
 }
 
 makeLogs(){
