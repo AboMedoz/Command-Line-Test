@@ -1,0 +1,17 @@
+1. Which one of these is a Fruit?
+[a] Apple
+[b] Onion
+[c] Tomato
+[d] Cabbage
+
+2. Which one of these is a Vehicle?
+[a] Car
+[b] Table
+[c] Cat
+[d] Sky
+
+3. Which one of these is a Vegetable?
+[a] Orange
+[b] Banana
+[c] Beans
+[d] Mango

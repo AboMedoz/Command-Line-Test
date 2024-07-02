@@ -1,5 +1,9 @@
+
+mkdir Data
+cd Data\
+
 makeDatabase(){
-    if [ ! -f Database.txt ]; then
+    if [ ! -f Data/Database.txt ]; then
     touch Database.txt
     echo "Username || Password" >> Database.txt
     else
@@ -8,12 +12,13 @@ makeDatabase(){
 }
 
 makeLogs(){
-    if [ ! -f logs.log ]; then
-    touch logs.log
+    if [ ! -f Data/logs.log ]; then
+    touch logs.log 
     else 
     echo "File Exists"
     fi
 }
+makeDatabase
 makeLogs
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
 echo $currentdate

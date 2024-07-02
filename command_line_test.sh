@@ -1,6 +1,8 @@
 #!/bin/bash
 
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
+mkdir Data
+cd Data/
 echo "Command Line Test"
 
 takeTest(){
@@ -54,13 +56,13 @@ signIn(){
 }
 
 makeLogs(){
-    if [ ! -f logs.log ]; then
+    if [ ! -f Data/logs.log ]; then
     touch logs.log
     fi
 }
 
 makeDatabase(){
-    if [ ! -f Database.txt ]; then
+    if [ ! -f Data/Database.txt ]; then
     touch Database.txt
     echo "Username || Password" >> Database.txt
     echo "$currentdate | Database Created." >> logs.log
