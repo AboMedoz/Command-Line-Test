@@ -1,7 +1,6 @@
 #!/bin/bash
 
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
-mkdir Data
 cd Data/
 echo "Command Line Test"
 

@@ -1,5 +1,3 @@
-
-mkdir Data
 cd Data\
 
 makeDatabase(){
@@ -18,6 +16,7 @@ makeLogs(){
     echo "File Exists"
     fi
 }
+
 makeDatabase
 makeLogs
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
