@@ -27,8 +27,8 @@ readFile(){
     done
 }
 
-# makeDatabase
-# makeLogs
-# currentdate=$(date +"%Y-%m-%d %H:%M:%S")
-# echo $currentdate
+makeDatabase
+makeLogs
+currentdate=$(date +"%Y-%m-%d %H:%M:%S")
+echo $currentdate
 readFile
