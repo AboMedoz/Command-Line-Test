@@ -5,8 +5,16 @@ cd Data/
 echo "Command Line Test"
 
 takeTest(){
-    echo "TODO"
-    #TODO
+    linenumber=1
+    while [ $linenumber -lt 18 ]
+    do
+    #TODO TIMER
+    sed -n "$linenumber, $(( linenumber + 5 ))p" < QuestionBank.txt
+    echo -n "Please choose an Answer: "
+    read answer
+    echo
+    linenumber=$(( linenumber + 6 ))
+    done
 }
 
 viewTest(){
@@ -22,6 +30,7 @@ featureScreen(){
 
     echo -n "Please choose an Option: "
     read featureoption 
+    echo
     if [ $featureoption -eq 1 ]; then
     takeTest
     elif [ $featureoption -eq 2 ]; then 
@@ -128,6 +137,7 @@ main(){
     echo -n "Please choose an Option: "
     #timeout  --kill-after=10s TODO
     read option
+    echo
     if [ $option -eq 1 ]; then
     signIn
     elif [ $option -eq 2 ]; then

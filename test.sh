@@ -17,7 +17,18 @@ makeLogs(){
     fi
 }
 
-makeDatabase
-makeLogs
-currentdate=$(date +"%Y-%m-%d %H:%M:%S")
-echo $currentdate
+readFile(){
+    linenumber=1
+    while  [ $linenumber -lt 18 ]
+    do
+    sed -n "$linenumber, $((linenumber + 5))p" < QuestionBank.txt
+    read answer
+    linenumber=$((linenumber + 6))
+    done
+}
+
+# makeDatabase
+# makeLogs
+# currentdate=$(date +"%Y-%m-%d %H:%M:%S")
+# echo $currentdate
+readFile
