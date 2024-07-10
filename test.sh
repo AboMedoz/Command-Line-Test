@@ -1,7 +1,7 @@
 cd Data\
 
 makeDatabase(){
-    if [ ! -f Data/Database.txt ]; then
+    if [ ! -f Database.txt ]; then
     touch Database.txt
     echo "Username || Password" >> Database.txt
     else
@@ -10,7 +10,7 @@ makeDatabase(){
 }
 
 makeLogs(){
-    if [ ! -f Data/logs.log ]; then
+    if [ ! -f logs.log ]; then
     touch logs.log 
     else 
     echo "File Exists"
@@ -19,11 +19,11 @@ makeLogs(){
 
 readFile(){
     linenumber=1
-    while  [ $linenumber -lt 18 ]
-    do
-    sed -n "$linenumber, $((linenumber + 5))p" < QuestionBank.txt
-    read answer
-    linenumber=$((linenumber + 6))
+    while  [ $linenumber -lt 18 ]; do
+        sed -n "$linenumber, $((linenumber + 5))p" < QuestionBank.txt
+        read answer
+        echo
+        linenumber=$((linenumber + 6))
     done
 }
 

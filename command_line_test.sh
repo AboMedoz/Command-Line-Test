@@ -27,7 +27,7 @@ featureScreen(){
     echo "1. Take a Test"
     echo "2. View your Test"
     echo "3. Exit"
-
+    echo
     echo -n "Please choose an Option: "
     read featureoption 
     echo
@@ -64,13 +64,13 @@ signIn(){
 }
 
 makeLogs(){
-    if [ ! -f Data/logs.log ]; then
+    if [ ! -f logs.log ]; then
     touch logs.log
     fi
 }
 
 makeDatabase(){
-    if [ ! -f Data/Database.txt ]; then
+    if [ ! -f Database.txt ]; then
     touch Database.txt
     echo "Username || Password" >> Database.txt
     echo "$currentdate | Database Created." >> logs.log
