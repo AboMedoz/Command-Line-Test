@@ -1,19 +1,28 @@
 #!/bin/bash
 
+echo "Command Line Test"
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
 cd Data/
-echo "Command Line Test"
 
 takeTest(){
-    linenumber=1
-    while [ $linenumber -lt 18 ]
-    do
-    #TODO TIMER
-    sed -n "$linenumber, $(( linenumber + 5 ))p" < QuestionBank.txt
-    echo -n "Please choose an Answer: "
-    read answer
-    echo
-    linenumber=$(( linenumber + 6 ))
+    question=1
+    lines=("1" "7" "13")
+    while [ $question -le 3 ];do
+        timer=10
+        randidx=$((RANDOM%${#lines[@]}))
+        current=${lines[$randidx]}
+        unset lines[$randidx]
+        lines=("${lines[@]}")
+        while [ $timer -gt 0 ];do
+            clear
+            echo "Time Remaining: ${timer} Seconds"
+            echo
+            echo -n "$question. "
+            sed -n "$current, $((current + 5))p" < QuestionBank.txt
+            read -t 1 -n 1 answer && break
+            (( timer-- ))
+        done
+        (( question++ ))
     done
 }
 

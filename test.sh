@@ -17,13 +17,38 @@ makeLogs(){
     fi
 }
 
-readFile(){
-    linenumber=1
-    while  [ $linenumber -lt 18 ]; do
-        sed -n "$linenumber, $((linenumber + 5))p" < QuestionBank.txt
-        read answer
-        echo
-        linenumber=$((linenumber + 6))
+arrayRandom(){
+    lines=("1" "7" "13")
+    echo ${lines[@]}
+    echo ${!lines[@]}
+    rand=$((RANDOM%${#lines[@]}))
+    echo $rand
+    unset lines[$rand]
+    lines=("${lines[@]}")
+    echo ${lines[@]}
+    echo ${!lines[@]}
+}
+
+randomQuestion(){
+    question=1
+    lines=( 1 7 13 )
+    while [ $question -le 3 ]; do
+        timer=10
+        rand=$((RANDOM%${#lines[@]}))
+        current="${lines[$rand]}"
+        unset lines[$rand]
+        lines=("${lines[@]}")
+        while [ $timer -gt 0 ]; do
+            clear
+            echo "Time Remaining: ${timer} Seconds"
+            echo
+            echo -n "$question. "
+            sed -n "$current, $((current + 5))p" < QuestionBank.txt 
+            read -t 1 -n 1 answer  && break
+            echo
+            (( timer-- ))
+        done
+        question=$(( question + 1 ))
     done
 }
 
@@ -31,4 +56,5 @@ makeDatabase
 makeLogs
 currentdate=$(date +"%Y-%m-%d %H:%M:%S")
 echo $currentdate
-readFile
+arrayRandom
+randomQuestion
