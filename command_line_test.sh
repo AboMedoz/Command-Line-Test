@@ -144,8 +144,10 @@ main(){
     echo
     echo "Note: Script Timeout is set"
     echo -n "Please choose an Option: "
-    #timeout  --kill-after=10s TODO
-    read option
+    read -t 10 option 
+    if [ -z $option ];then
+    exit
+    fi
     echo
     if [ $option -eq 1 ]; then
     signIn
