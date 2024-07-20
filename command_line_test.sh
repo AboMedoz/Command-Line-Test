@@ -56,6 +56,12 @@ takeTest(){
         fi
         (( idx++ ))
     done
+    echo
+    echo
+    echo "Test Done you will be Logged Off shortly."
+    sleep 3
+    clear
+    exit
 }
 
 viewTest(){
@@ -63,6 +69,7 @@ viewTest(){
 }
 
 featureScreen(){
+    echo "My Command Line Test"
     echo 
     echo "1. Take a Test"
     echo "2. View your Test"
@@ -70,7 +77,7 @@ featureScreen(){
     echo
     echo -n "Please choose an Option: "
     read featureoption 
-    echo
+    clear
     if [ $featureoption -eq 1 ]; then
     takeTest
     elif [ $featureoption -eq 2 ]; then 
@@ -81,6 +88,8 @@ featureScreen(){
 }
 
 signIn(){
+    echo "My Command Line Test"
+    echo
     usernameValidation(){
         echo -n "Username: "
         read enteredusername
@@ -100,6 +109,7 @@ signIn(){
     }
     usernameValidation
     passwordValidation
+    clear
     featureScreen 
 }
 
@@ -118,6 +128,8 @@ makeDatabase(){
 }
 
 signUp(){
+    echo 'My Command Line Test'
+    echo
     makeDatabase
     echo "Sign Up Screen"
     echo
@@ -162,6 +174,7 @@ signUp(){
     echo -n "Registeration Successful. Please enter any Key to continue. "
     echo "$currentdate | Script Exited " >> logs.log
     read $1
+    clear
 }
 
 main(){
@@ -174,9 +187,12 @@ main(){
     echo "3. Exit"
     echo
     echo "Note: Script Timeout is set"
+    echo
     echo -n "Please choose an Option: "
     read -t 10 option 
+    clear
     if [ -z $option ];then
+    echo "$currentdate || Script Exited" >> logs.log
     exit
     fi
     echo
